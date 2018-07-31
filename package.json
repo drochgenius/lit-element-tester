@@ -1,0 +1,30 @@
+{
+  "name": "custom-element-tester",
+  "version": "0.0.1",
+  "description": "Framework to unit test custom elements on Chrome",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "mocha-headless-chrome -f test/runner.html -a no-sandbox"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/drochgenius/custom-element-tester.git"
+  },
+  "keywords": [],
+  "author": "Dominique Rochefort <dominique.rochefort@hmhco.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/drochgenius/custom-element-tester/issues"
+  },
+  "homepage": "https://github.com/drochgenius/custom-element-tester#readme",
+  "dependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0",
+    "mocha-headless-chrome": "^2.0.1"
+  },
+  "devDependencies": {
+    "typescript": "^3.0.1"
+  }
+}
