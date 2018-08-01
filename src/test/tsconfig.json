@@ -1,0 +1,11 @@
+{
+    "extends": "../tsconfig.json",
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "none",
+        "moduleResolution": "node",
+        "rootDir": ".",
+        "outDir": "../../dist/test"
+    },
+    "include": ["../test/**/*.ts", "../lib/globals.d.ts"]
+}

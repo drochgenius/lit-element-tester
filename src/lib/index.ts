@@ -14,8 +14,9 @@ process.on('unhandledRejection', (reason, p) => {
     // application specific logging, throwing an error, or other logic here
 });
 
-(async () => {
-    const result: Run = await runner(options);
+(async (): Promise<void> => {
+    const { coverage, result }: Run = await runner(options);
+    const cov: string = JSON.stringify(coverage);
     const json: string = JSON.stringify(result);
-    console.log(json);
+    console.log(cov, json);
 })();

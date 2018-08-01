@@ -1,13 +1,8 @@
 {
     "compileOnSave": true,
     "compilerOptions": {
-        "baseUrl": "./",
+        "baseUrl": "../",
         "declaration": true,
-        "target": "esnext",
-        "module": "commonjs",
-        "moduleResolution": "node",
-        "rootDir": "./src",
-        "outDir": "dist",
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
         "noImplicitAny": true,
@@ -18,8 +13,8 @@
         "skipLibCheck": true,
         "preserveConstEnums": true,
         "sourceMap": true,
-        "pretty": true
+        "pretty": true,
+        "lib": ["esnext", "dom"]
     },
-    "include": ["src/**/*.ts"],
     "exclude": ["node_modules"]
 }

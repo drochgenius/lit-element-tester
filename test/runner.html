@@ -5,21 +5,27 @@
     <title>Mocha Tests</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="../node_modules/mocha/mocha.css">
+    <script src="../node_modules/mocha/mocha.js"></script>
+    <script src="../node_modules/chai/chai.js"></script>
+    <script src="../dist/browser/util.js">
+        // for withSnippet() utility
+    </script>
+    <script>mocha.setup('bdd');</script>
+    <!-- add your components under test here -->
+    <script src="../dist/components/page-banner.js"></script>
 </head>
 
 <body>
+
+    <!-- test snippets -->
+    <template id="first">
+        <page-banner message="Hello World!"></page-banner>
+    </template>
+
     <div id="mocha"></div>
-    <script src="../node_modules/mocha/mocha.js"></script>
-    <script src="../node_modules/chai/chai.js"></script>
-    <script>mocha.setup('bdd');</script>
-    <script>
-        const { expect } = chai;
-        describe('some example tests', () => {
-            it('should be true', () => {
-                expect(true).to.be.true;
-            });
-        })
-    </script>
+    <div id="stage"></div>
+    <!-- add you test files here -->
+    <script src="../dist/test/index.spec.js"></script>
     <script>mocha.run();</script>
 </body>
 

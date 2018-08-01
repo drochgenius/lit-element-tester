@@ -2,10 +2,10 @@
   "name": "custom-element-tester",
   "version": "0.0.1",
   "description": "Framework to unit test custom elements on Chrome",
-  "main": "index.js",
+  "main": "dist/lib/index.js",
   "scripts": {
-    "build": "tsc",
-    "start": "node dist/index.js",
+    "build": "tsc -p src/lib; tsc -p src/components; tsc -p src/browser; tsc -p src/test;",
+    "start": "node dist/lib/index.js",
     "test": "mocha-headless-chrome -f test/runner.html -a no-sandbox"
   },
   "repository": {
@@ -25,6 +25,10 @@
     "mocha-headless-chrome": "^2.0.1"
   },
   "devDependencies": {
-    "typescript": "^3.0.1"
+    "source-map-loader": "^0.2.3",
+    "ts-loader": "^4.4.2",
+    "typescript": "^3.0.1",
+    "webpack": "^4.16.3",
+    "webpack-cli": "^3.1.0"
   }
 }
