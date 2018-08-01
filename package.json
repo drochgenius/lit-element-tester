@@ -7,9 +7,9 @@
     "scripts": {
         "prepublish": "npm run build",
         "build": "tsc -p src/lib; tsc -p src/components; tsc -p src/browser; tsc -p src/test;",
-        "instrument": "nyc instrument dist/components/page-banner.js --produce-source-map  > dist/components/page-banner.ins.js",
-        "start": "node dist/lib/index.js",
-        "test": "mocha-headless-chrome -f test/runner.html -a no-sandbox"
+        "instrument": "nyc instrument dist/components/page-banner.js --produce-source-map  > dist/components/page-banner.instrumented.js",
+        "test": "dist/lib/cli.js  test/runner.html",
+        "test-dev": "dist/lib/cli.js -d  test/runner.html"
     },
     "repository": {
         "type": "git",

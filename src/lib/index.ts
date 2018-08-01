@@ -2,7 +2,6 @@ import { Options, Run, runner } from 'mocha-headless-chrome';
 // @ts-ignore
 import { remap, writeReport } from 'remap-istanbul';
 import * as istanbul from 'istanbul';
-// import { writeFileSync } from 'fs';
 process.on('unhandledRejection', (reason, p) => {
     console.log('Unhandled Rejection at:', p, 'reason:', reason);
     // application specific logging, throwing an error, or other logic here
@@ -26,10 +25,6 @@ export async function run(file: string = 'test/runner.html'): Promise<void> {
 
     reporter.add('text');
     reporter.write(remappedCoverage, true, function() {
-        console.log('All reports generated');
+        console.log('done');
     });
-
-    //  writeFileSync('coverage.json', JSON.stringify(coverage), 'utf8');
-
-    // await writeReport(, 'json', 'coverage-final.json');
 }
