@@ -17,6 +17,10 @@ class PageBanner extends HTMLElement {
             h3.innerHTML = `My banner shows this: ${newVal}`;
         }
     }
+
+    public otherFuncNotCovered(){
+        this.blur();
+    }
 }
 
 customElements.define('page-banner', PageBanner);

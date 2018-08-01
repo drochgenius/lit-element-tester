@@ -7,6 +7,7 @@
     "scripts": {
         "prepublish": "npm run build",
         "build": "tsc -p src/lib; tsc -p src/components; tsc -p src/browser; tsc -p src/test;",
+        "instrument": "nyc instrument dist/components/page-banner.js --produce-source-map  > dist/components/page-banner.ins.js",
         "start": "node dist/lib/index.js",
         "test": "mocha-headless-chrome -f test/runner.html -a no-sandbox"
     },
@@ -25,11 +26,15 @@
         "browser-sync": "^2.24.6",
         "chai": "^4.1.2",
         "commander": "^2.16.0",
+        "istanbul": "^0.4.5",
         "mocha": "^5.2.0",
-        "mocha-headless-chrome": "^2.0.1"
+        "mocha-headless-chrome": "^2.0.1",
+        "remap-istanbul": "^0.11.1"
     },
     "devDependencies": {
         "@types/browser-sync": "0.0.41",
+        "@types/istanbul": "^0.4.30",
+        "source-map-support": "^0.5.6",
         "typescript": "^3.0.1"
     }
 }

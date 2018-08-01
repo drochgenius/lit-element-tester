@@ -4,12 +4,16 @@ import { run } from './index';
 import { serve } from './server';
 
 program
-    .version('0.1.0')
-    .option('-d, --development', 'Add peppers')
+    .version('0.0.1')
+    .option('-d, --development', 'launch a real browser for development')
     .parse(process.argv);
 
+const args: string[] = program.args;
+
+console.log('args', args);
+
 if (program.development) {
-    serve();
+    serve(args[0]);
 } else {
-    run();
+    run(args[0]);
 }

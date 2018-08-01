@@ -1,4 +1,4 @@
 declare const chai: any;
-declare const describe: (label: string, callback: any) => void;
-declare const it: (label: string, callback: any) => void;
+declare const describe: any;
+declare const it: any;
 declare const withSnippet: (id: string, target?: string) => void;

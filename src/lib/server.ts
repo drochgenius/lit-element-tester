@@ -1,17 +1,16 @@
 import * as browserSync from 'browser-sync';
 
-export function serve() {
+export function serve(index: string = 'test/runner.html', baseDir: string[] = ['.']) {
     const bs = browserSync.create();
 
     // Listen to change events on HTML and reload
-    bs.watch('dist/dev').on('change', () => {
-        bs.reload();
-    });
+    for (const dir of baseDir) {
+        bs.watch(`${dir}/**/*.js`).on('change', () => {
+            bs.reload();
+        });
+    }
 
     bs.init({
-        server: {
-            baseDir: ['.'],
-            index: 'test/runner.html'
-        }
+        server: { baseDir, index }
     });
 }
