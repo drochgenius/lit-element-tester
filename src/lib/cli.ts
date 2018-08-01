@@ -8,8 +8,8 @@ program
     .version('0.0.1')
     .description('Run unit tests for custom elements in Google Chrome')
     .usage('<files...> [options]')
-    .option('-f, --file [file]', 'html runner file path')
     .option('-d, --development', 'launch a real browser for test development')
+    .option('-f, --file [file]', 'html runner file path', 'test/runner.html')
     .option('-H --height [px]', 'browser window height in pixels', parseInt, 800)
     .option('-W, --width [px]', 'browser window width in pixels', parseInt, 600)
     .option('-T, --timeout [ms]', 'test timeout in milliseconds', parseInt, 120000)
@@ -21,7 +21,7 @@ program
   (1) Run the test and collect coverage for all javascript files in dist/ folder.
 
     $ custom-element-tester dist/*.js -f test/index.html
-        `)
+        `);
     })
     .parse(process.argv);
 
@@ -32,11 +32,11 @@ console.log('file', program.file);
 
 (async (): Promise<void> => {
     const options: Options = {
-        file: program.file || 'test/runner.html', // test page path
-        reporter: program.reporter || 'text', // mocha reporter name
-        width: program.width || 800, // viewport width
-        height: program.height || 600, // viewport height
-        timeout: program.timeout || 120000, // timeout in ms
+        file: program.file, // test page path
+        reporter: program.reporter, // mocha reporter name
+        width: program.width, // viewport width
+        height: program.height, // viewport height
+        timeout: program.timeout, // timeout in ms
         args: ['no-sandbox'] // chrome arguments
     };
 
