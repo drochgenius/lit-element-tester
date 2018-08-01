@@ -1,34 +1,35 @@
 {
-  "name": "custom-element-tester",
-  "version": "0.0.1",
-  "description": "Framework to unit test custom elements on Chrome",
-  "main": "dist/lib/index.js",
-  "scripts": {
-    "build": "tsc -p src/lib; tsc -p src/components; tsc -p src/browser; tsc -p src/test;",
-    "start": "node dist/lib/index.js",
-    "test": "mocha-headless-chrome -f test/runner.html -a no-sandbox"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/drochgenius/custom-element-tester.git"
-  },
-  "keywords": [],
-  "author": "Dominique Rochefort <dominique.rochefort@hmhco.com>",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/drochgenius/custom-element-tester/issues"
-  },
-  "homepage": "https://github.com/drochgenius/custom-element-tester#readme",
-  "dependencies": {
-    "chai": "^4.1.2",
-    "mocha": "^5.2.0",
-    "mocha-headless-chrome": "^2.0.1"
-  },
-  "devDependencies": {
-    "source-map-loader": "^0.2.3",
-    "ts-loader": "^4.4.2",
-    "typescript": "^3.0.1",
-    "webpack": "^4.16.3",
-    "webpack-cli": "^3.1.0"
-  }
+    "name": "custom-element-tester",
+    "version": "0.0.1",
+    "description": "Framework to unit test custom elements on Chrome",
+    "bin": "dist/lib/cli.js",
+    "main": "dist/lib/index.js",
+    "scripts": {
+        "prepublish": "npm run build",
+        "build": "tsc -p src/lib; tsc -p src/components; tsc -p src/browser; tsc -p src/test;",
+        "start": "node dist/lib/index.js",
+        "test": "mocha-headless-chrome -f test/runner.html -a no-sandbox"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/drochgenius/custom-element-tester.git"
+    },
+    "keywords": [],
+    "author": "Dominique Rochefort <dominique.rochefort@hmhco.com>",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/drochgenius/custom-element-tester/issues"
+    },
+    "homepage": "https://github.com/drochgenius/custom-element-tester#readme",
+    "dependencies": {
+        "browser-sync": "^2.24.6",
+        "chai": "^4.1.2",
+        "commander": "^2.16.0",
+        "mocha": "^5.2.0",
+        "mocha-headless-chrome": "^2.0.1"
+    },
+    "devDependencies": {
+        "@types/browser-sync": "0.0.41",
+        "typescript": "^3.0.1"
+    }
 }

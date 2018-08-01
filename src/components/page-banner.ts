@@ -7,6 +7,7 @@ class PageBanner extends HTMLElement {
 
     constructor() {
         super(); // always call super() first in the constructor.
+        console.log('page banner is being built');
     }
 
     attributeChangedCallback(attrName: string, oldVal: any, newVal: any) {
