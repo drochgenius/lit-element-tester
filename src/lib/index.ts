@@ -37,7 +37,12 @@ export async function run(options: Options): Promise<void> {
     const remappedCoverage: any = remap(coverage, { exclude });
 
     reporter.add('text');
-    reporter.write(remappedCoverage, true, function() {
-        console.log('done');
+
+    await new Promise((resolve, reject) => {
+        try {
+            reporter.write(remappedCoverage, true, () => resolve());
+        } catch (e) {
+            reject(e);
+        }
     });
 }

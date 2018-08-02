@@ -5,12 +5,17 @@
     <title>Mocha Tests</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="../node_modules/mocha/mocha.css">
+    <script src="../node_modules/source-map-support/browser-source-map-support.js"></script>
     <script src="../node_modules/mocha/mocha.js"></script>
     <script src="../node_modules/chai/chai.js"></script>
     <script src="../dist/browser/util.js">
         // for withSnippet() utility
     </script>
-    <script>mocha.setup('bdd');</script>
+    <script>
+        /* global mocha, sourceMapSupport */
+        sourceMapSupport.install();
+        mocha.setup('bdd');
+    </script>
     <!-- add your components under test here -->
     <script src="../dist/components/page-banner.$.js"></script>
 </head>
