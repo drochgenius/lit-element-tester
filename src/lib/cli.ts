@@ -37,7 +37,7 @@ console.log('file', program.file);
         width: program.width, // viewport width
         height: program.height, // viewport height
         timeout: program.timeout, // timeout in ms
-        args: ['no-sandbox'] // chrome arguments
+        args: ['no-sandbox', 'disable-web-security'] // chrome arguments
     };
 
     // Generate instrumented files for coverage
