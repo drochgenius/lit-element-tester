@@ -5,9 +5,10 @@ export interface IServerOptions {
     index: string;
     open?: boolean;
     port?: number;
+    middleware?: any[];
 }
 
-export function serve({ index, baseDir = ['.'], open = false, port }: IServerOptions): browserSync.BrowserSyncInstance {
+export function serve({ index, baseDir = ['.'], open = false, port, middleware }: IServerOptions): browserSync.BrowserSyncInstance {
     const bs: browserSync.BrowserSyncInstance = browserSync.create();
 
     // Listen to change events on HTML and reload
@@ -20,7 +21,8 @@ export function serve({ index, baseDir = ['.'], open = false, port }: IServerOpt
     bs.init({
         server: { baseDir, index },
         open,
-        port
+        port,
+        middleware
     });
 
     return bs;

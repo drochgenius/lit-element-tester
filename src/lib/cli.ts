@@ -31,6 +31,15 @@ const args: string[] = program.args;
 console.log('args', args);
 console.log('file', program.file, `http://localhost:${program.port}/`);
 
+const middleware: any[] = [
+    function middleware(req: any, res: any, next: any): any {
+        if (args.some((arg: string) => req.url.includes(arg))) {
+            req.url = req.url.replace('.js', '.$.js');
+        }
+        next();
+    }
+];
+
 (async (): Promise<void> => {
     const options: Options = {
         file: `http://localhost:${program.port}/`, // test page path
@@ -48,9 +57,9 @@ console.log('file', program.file, `http://localhost:${program.port}/`);
 
     // Run the tests
     if (program.development) {
-        serve({ index: program.file, open: true, port: program.port });
+        serve({ index: program.file, open: true, port: program.port, middleware });
     } else {
-        serve({ index: program.file, open: false, port: program.port });
+        serve({ index: program.file, open: false, port: program.port, middleware });
         await run(options);
         process.exit(0);
     }
