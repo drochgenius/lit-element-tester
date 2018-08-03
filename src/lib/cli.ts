@@ -2,7 +2,7 @@
 import { Options } from 'mocha-headless-chrome';
 import * as program from 'commander';
 import { instrument, run } from './index';
-import { serve } from './server';
+import { serve, defineAdditionalRoutes } from './server';
 
 program
     .version('0.0.1')
@@ -29,25 +29,18 @@ program
 const args: string[] = program.args;
 
 console.log('args', args);
-console.log('file', program.file, `http://localhost:${program.port}/`);
+console.log('file', program.file, `http://127.0.0.1:${program.port}/`);
 
-const middleware: any[] = [
-    function middleware(req: any, res: any, next: any): any {
-        if (args.some((arg: string) => req.url.includes(arg))) {
-            req.url = req.url.replace('.js', '.$.js');
-        }
-        next();
-    }
-];
+
 
 (async (): Promise<void> => {
     const options: Options = {
-        file: `http://localhost:${program.port}/`, // test page path
+        file: `http://127.0.0.1:${program.port}/${program.file}`, // test page path
         reporter: program.reporter, // mocha reporter name
         width: program.width, // viewport width
         height: program.height, // viewport height
         timeout: program.timeout, // timeout in ms
-        args: ['no-sandbox', 'disable-web-security'] // chrome arguments
+        args: ['no-sandbox'] // chrome arguments
     };
 
     // Generate instrumented files for coverage
@@ -57,9 +50,9 @@ const middleware: any[] = [
 
     // Run the tests
     if (program.development) {
-        serve({ index: program.file, open: true, port: program.port, middleware });
+        await serve({ index: program.file, open: true, port: program.port, additionalRoutes: defineAdditionalRoutes(args) });
     } else {
-        serve({ index: program.file, open: false, port: program.port, middleware });
+        await serve({ index: program.file, open: false, port: program.port, additionalRoutes: defineAdditionalRoutes(args) });
         await run(options);
         process.exit(0);
     }
