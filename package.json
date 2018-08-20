@@ -16,15 +16,15 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/drochgenius/custom-element-tester.git"
+        "url": "git+https://github.com/drochgenius/lit-element-tester.git"
     },
     "keywords": [],
     "author": "Dominique Rochefort <dominique.rochefort@hmhco.com>",
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/drochgenius/custom-element-tester/issues"
+        "url": "https://github.com/drochgenius/lit-element-tester/issues"
     },
-    "homepage": "https://github.com/drochgenius/custom-element-tester#readme",
+    "homepage": "https://github.com/drochgenius/lit-element-tester#readme",
     "dependencies": {
         "chai": "^4.1.2",
         "commander": "^2.16.0",

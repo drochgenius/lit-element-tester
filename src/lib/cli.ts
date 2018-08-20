@@ -21,7 +21,7 @@ program
     
   (1) Run the test and collect coverage for all javascript files in dist/ folder.
 
-    $ custom-element-tester dist/*.js -f test/index.html
+    $ lit-element-tester dist/*.js -f test/index.html
         `);
     })
     .parse(process.argv);
