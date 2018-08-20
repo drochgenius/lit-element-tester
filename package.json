@@ -1,14 +1,17 @@
 {
-    "name": "custom-element-tester",
-    "version": "0.0.1",
+    "name": "@hmh/lit-element-tester",
+    "version": "0.0.2",
     "description": "Framework to unit test custom elements on Chrome",
-    "bin": "dist/lib/cli.js",
+    "bin": {
+        "lit-element-tester": "dist/lib/cli.js"
+    },
     "main": "dist/lib/index.js",
     "scripts": {
         "prepublish": "npm run build",
         "build": "tsc -p src/lib; tsc -p src/components; tsc -p src/browser; tsc -p src/test;",
+        "watch": "tsc -p src/lib -w ",
         "help": "dist/lib/cli.js -h",
-        "test": "dist/lib/cli.js dist/components/*.js -f test/runner.html",
+        "test": "dist/lib/cli.js dist/components/page-banner.js -f test/runner.html",
         "test-dev": "dist/lib/cli.js dist/components/*.js -f test/runner.html -d"
     },
     "repository": {
@@ -23,12 +26,13 @@
     },
     "homepage": "https://github.com/drochgenius/custom-element-tester#readme",
     "dependencies": {
-        "browser-sync": "^2.24.6",
         "chai": "^4.1.2",
         "commander": "^2.16.0",
         "istanbul": "^0.4.5",
         "mocha": "^5.2.0",
         "mocha-headless-chrome": "^2.0.1",
+        "nyc": "^12.0.2",
+        "polyserve": "^0.27.12",
         "remap-istanbul": "^0.11.1",
         "source-map-support": "^0.5.6"
     },
