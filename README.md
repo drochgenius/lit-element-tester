@@ -18,12 +18,12 @@ Take note that Google Chrome is the only supported browser, and there is no plan
 
 # HTML test runner template
 
-*lit-element-tester* requires you to provide an HTML test runner that will get loaded in Chrome for testing.
+**lit-element-tester** requires you to provide an HTML test runner that will get loaded in Chrome for testing.
 
 Use the following as a template for your test runner:
 https://github.com/drochgenius/lit-element-tester/blob/master/test/runner.html
 
-We expect this file to be located in a folder called *test* at the top level of your project.
+We expect this file to be located in a folder called **/test** at the top level of your project.
 
 # Usage
 
