@@ -4,6 +4,15 @@ A framework that makes unit testing your custom elements built with `Polymer/lit
 
 Built with [Mocha Headless Chrome](https://github.com/direct-adv-interfaces/mocha-headless-chrome).
 
+# Installation
+
+```shell
+npm install lit-element-tester -g
+```
+
+You may alternatively install the package locally with `--save` option and use `npx` utility to run it.
+
+
 # Highlights
 
 - Development mode with Google Chrome
