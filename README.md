@@ -23,6 +23,8 @@ Take note that Google Chrome is the only supported browser, and there is no plan
 Use the following as a template for your test runner:
 https://github.com/drochgenius/lit-element-tester/blob/master/test/runner.html
 
+We expect this file to be located in a folder called *test* at the top level of your project.
+
 # Usage
 
 Look at the man page.
