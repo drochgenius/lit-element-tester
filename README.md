@@ -16,7 +16,7 @@ Built with [Mocha Headless Chrome](https://github.com/direct-adv-interfaces/moch
 
 Take note that Google Chrome is the only supported browser, and there is no plan to add support for other browsers.
 
-# Test runnner HTML template
+# HTML test runner template
 
 *lit-element-tester* requires you to provide an HTML test runner that will get loaded in Chrome for testing.
 
