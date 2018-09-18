@@ -1,20 +1,14 @@
 import { Options, Run, runner } from 'mocha-headless-chrome';
-import { copyFileSync } from 'fs';
-// @ts-ignore
-import { remap, writeReport } from 'remap-istanbul';
-import * as cp from 'child_process';
-import { promisify } from 'util';
-import * as istanbul from 'istanbul';
-
-const exec = promisify(cp.exec);
+import { loadCoverage, remap, writeReport } from 'remap-istanbul';
+import { createReporter } from 'istanbul-api';
+import { createCoverageMap } from 'istanbul-lib-coverage';
+import { createInstrumenter } from 'istanbul-lib-instrument';
+import { readFileSync, writeFileSync, unlinkSync } from 'fs';
 
 process.on('unhandledRejection', (reason, p) => {
     console.log('Unhandled Rejection at:', p, 'reason:', reason);
     // application specific logging, throwing an error, or other logic here
 });
-
-// const instrumenter: istanbul.Instrumenter = createInstrumenter();
-const reporter: istanbul.Reporter = new istanbul.Reporter();
 
 /**
  * Instrument Javascript files for code coverage reporting
@@ -22,37 +16,34 @@ const reporter: istanbul.Reporter = new istanbul.Reporter();
  * @param files : a list of javascript files to instrument with Istanbul
  */
 export async function instrument(files: string[] = []) {
+    const instrumenter: any = createInstrumenter({ esModules: true, produceSourceMap: true });
+
     for (const sourceFile of files) {
         if (!sourceFile.includes('$')) {
             const instrumentedFile = sourceFile.replace('.js', '.$.js');
-            const { stderr } = await exec(`nyc instrument ${sourceFile} temp/`);
 
-            if (stderr) {
-                throw new Error(`instrumentation error: ${stderr}`);
-            }
-            copyFileSync(`temp/${sourceFile}`, instrumentedFile);
-            //writeFileSync(instrumentedFile, stdout, 'utf8');
+            const code: string = readFileSync(sourceFile, 'utf8');
+
+            const instrumentedCode: string = instrumenter.instrumentSync(code, sourceFile);
+            writeFileSync(instrumentedFile, instrumentedCode, 'utf8');
         }
     }
-}
-
-function exclude(file: string): boolean {
-    return file.includes('node_modules') || file.includes('bootstrap');
 }
 
 export async function run(options: Options): Promise<void> {
     const { coverage }: Run = await runner(options);
     if (coverage) {
-        const remappedCoverage: any = remap(coverage, { exclude });
-        reporter.add('text');
+        const COVERAGE_FILE: string = 'coverage-final.json';
+        const reporter: any = createReporter();
+        const collector: string = remap(coverage);
 
-        await new Promise((resolve, reject) => {
-            try {
-                reporter.write(remappedCoverage, true, () => resolve());
-            } catch (e) {
-                reject(e);
-            }
-        });
+        await writeReport(collector, 'json', COVERAGE_FILE);
+        const remapped: string = await loadCoverage(COVERAGE_FILE);
+        unlinkSync(COVERAGE_FILE);
+
+        const map: string = createCoverageMap(remapped);
+        reporter.addAll(['text']);
+        reporter.write(map);
     } else {
         console.warn('NOTICE: code coverage could not be computed');
     }
