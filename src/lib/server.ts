@@ -15,7 +15,6 @@ export function defineAdditionalRoutes(args: string[]): Map<string, RequestHandl
     additionalRoutes.set('*.js', (req: any, res: any, next: NextFunction) => {
         if (args.some((arg: string) => req.url.includes(arg))) {
             req.url = req.url.replace('.js', '.$.js');
-            console.log('-----> redirecting to ', req.url);
         }
         next();
     });
