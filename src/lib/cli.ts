@@ -28,10 +28,7 @@ program
 
 const args: string[] = program.args;
 
-console.log('args', args);
 console.log('file', program.file, `http://127.0.0.1:${program.port}/`);
-
-
 
 (async (): Promise<void> => {
     const options: Options = {

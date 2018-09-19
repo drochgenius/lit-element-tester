@@ -5,7 +5,10 @@
         "module": "commonjs",
         "moduleResolution": "node",
         "rootDir": "../lib",
-        "outDir": "../../dist/lib"
+        "outDir": "../../dist/lib",
+        "typeRoots": [
+            "."
+        ]
     },
     "include": ["../lib/**/*.ts"]
 }
