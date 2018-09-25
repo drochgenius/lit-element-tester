@@ -36,7 +36,7 @@ const options: Options = {
     width: program.width, // viewport width
     height: program.height, // viewport height
     timeout: program.timeout, // timeout in ms
-    args: ['no-sandbox'] // chrome arguments
+    args: ['no-sandbox', 'disable-setuid-sandbox'] // chrome arguments
 };
 
 let serverHandle: any;
