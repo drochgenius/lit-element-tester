@@ -35,8 +35,8 @@ const options: Options = {
     reporter: program.reporter, // mocha reporter name
     width: program.width, // viewport width
     height: program.height, // viewport height
+    args: ['no-sandbox', 'disable-dev-shm-usage'], // chrome arguments
     timeout: program.timeout, // timeout in ms
-    args: ['no-sandbox', 'disable-setuid-sandbox'] // chrome arguments
 };
 
 if (process.env.CHROME_EXECUTABLE_PATH) {
