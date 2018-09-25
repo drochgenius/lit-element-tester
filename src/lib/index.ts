@@ -31,7 +31,9 @@ export async function instrument(files: string[] = []) {
 }
 
 export async function run(options: Options): Promise<void> {
-    const { coverage }: Run = await runner(options);
+    const { coverage, result }: Run = await runner(options);
+    console.log('TEST RESULT', JSON.stringify(result));
+
     if (coverage) {
         const COVERAGE_FILE: string = 'coverage-final.json';
         const reporter: any = createReporter();
@@ -46,5 +48,9 @@ export async function run(options: Options): Promise<void> {
         reporter.write(map);
     } else {
         console.warn('NOTICE: code coverage could not be computed');
+    }
+
+    if (result.stats.failures > 0){
+        throw new Error('Some of the tests failed, see above report for details!');
     }
 }

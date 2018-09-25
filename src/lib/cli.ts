@@ -39,6 +39,8 @@ const options: Options = {
     args: ['no-sandbox'] // chrome arguments
 };
 
+let serverHandle: any;
+
 (async (): Promise<void> => {
     // Generate instrumented files for coverage
     if (args) {
@@ -50,10 +52,14 @@ const options: Options = {
         await serve({ index: program.file, open: true, port: program.port, additionalRoutes: defineAdditionalRoutes(args) });
     } else {
         const { server }: any = await serve({ index: program.file, open: false, port: program.port, additionalRoutes: defineAdditionalRoutes(args) });
+        serverHandle = server;
         await run(options);
         server.close();
     }
 })().catch((err: Error) => {
+    if (serverHandle) {
+        serverHandle.close();
+    }
     console.error('Failed to run tests with options: ', JSON.stringify(options));
     throw err;
 });
