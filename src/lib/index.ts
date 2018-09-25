@@ -32,7 +32,6 @@ export async function instrument(files: string[] = []) {
 
 export async function run(options: Options): Promise<void> {
     const { coverage, result }: Run = await runner(options);
-    console.log('TEST RESULT', JSON.stringify(result));
 
     if (coverage) {
         const COVERAGE_FILE: string = 'coverage-final.json';
