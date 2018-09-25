@@ -61,5 +61,5 @@ let serverHandle: any;
         serverHandle.close();
     }
     console.error('Failed to run tests with options: ', JSON.stringify(options));
-    throw err;
+    process.exit(1);
 });

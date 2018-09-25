@@ -5,11 +5,6 @@ import { createCoverageMap } from 'istanbul-lib-coverage';
 import { createInstrumenter } from 'istanbul-lib-instrument';
 import { readFileSync, writeFileSync, unlinkSync } from 'fs';
 
-process.on('unhandledRejection', (reason, p) => {
-    console.log('Unhandled Rejection at:', p, 'reason:', reason);
-    // application specific logging, throwing an error, or other logic here
-});
-
 /**
  * Instrument Javascript files for code coverage reporting
  *
