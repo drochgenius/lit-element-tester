@@ -39,6 +39,10 @@ const options: Options = {
     args: ['no-sandbox', 'disable-setuid-sandbox'] // chrome arguments
 };
 
+if (process.env.CHROME_EXECUTABLE_PATH) {
+    options.executablePath = process.env.CHROME_EXECUTABLE_PATH;
+}
+
 let serverHandle: any;
 
 (async (): Promise<void> => {
