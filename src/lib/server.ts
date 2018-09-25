@@ -22,7 +22,7 @@ export function defineAdditionalRoutes(args: string[]): Map<string, RequestHandl
     return additionalRoutes;
 }
 
-export async function serve({ index, baseDir = '.', open = false, port, additionalRoutes }: IServerOptions): Promise<void> {
+export async function serve({ index, baseDir = '.', open = false, port, additionalRoutes }: IServerOptions): Promise<any> {
     const options: ServerOptions = {
         compile: 'never',
         /** The root directory to serve **/
@@ -50,5 +50,5 @@ export async function serve({ index, baseDir = '.', open = false, port, addition
         additionalRoutes
     };
 
-    await startServers(options);
+    return await startServers(options);
 }

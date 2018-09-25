@@ -30,16 +30,16 @@ const args: string[] = program.args;
 
 console.log('file', program.file, `http://127.0.0.1:${program.port}/`);
 
-(async (): Promise<void> => {
-    const options: Options = {
-        file: `http://127.0.0.1:${program.port}/${program.file}`, // test page path
-        reporter: program.reporter, // mocha reporter name
-        width: program.width, // viewport width
-        height: program.height, // viewport height
-        timeout: program.timeout, // timeout in ms
-        args: ['no-sandbox'] // chrome arguments
-    };
+const options: Options = {
+    file: `http://127.0.0.1:${program.port}/${program.file}`, // test page path
+    reporter: program.reporter, // mocha reporter name
+    width: program.width, // viewport width
+    height: program.height, // viewport height
+    timeout: program.timeout, // timeout in ms
+    args: ['no-sandbox'] // chrome arguments
+};
 
+(async (): Promise<void> => {
     // Generate instrumented files for coverage
     if (args) {
         await instrument(args);
@@ -49,8 +49,11 @@ console.log('file', program.file, `http://127.0.0.1:${program.port}/`);
     if (program.development) {
         await serve({ index: program.file, open: true, port: program.port, additionalRoutes: defineAdditionalRoutes(args) });
     } else {
-        await serve({ index: program.file, open: false, port: program.port, additionalRoutes: defineAdditionalRoutes(args) });
+        const { server }: any = await serve({ index: program.file, open: false, port: program.port, additionalRoutes: defineAdditionalRoutes(args) });
         await run(options);
-        process.exit(0);
+        server.close();
     }
-})();
+})().catch((err: Error) => {
+    console.error('Failed to run tests with options: ', JSON.stringify(options));
+    throw err;
+});
