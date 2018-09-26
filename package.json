@@ -20,11 +20,6 @@
     },
     "keywords": [],
     "author": "Dominique Rochefort <dominique.rochefort@hmhco.com>",
-    "contributors": {
-        "name": "Barney Rubble",
-        "email": "b@rubble.com",
-        "url": "http://barnyrubble.tumblr.com/"
-    },
     "license": "ISC",
     "bugs": {
         "url": "https://github.com/drochgenius/lit-element-tester/issues"
