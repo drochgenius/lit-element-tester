@@ -4,5 +4,5 @@ function withSnippet(id: string, target: string = 'stage'): void {
 
     const content: Node = template.content.cloneNode(true);
     stage.innerHTML = '';
-    stage.appendChild(content);
+    stage.appendChild(content);    
 }

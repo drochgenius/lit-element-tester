@@ -56,7 +56,6 @@ let serverHandle: any;
         await serve({ index: program.file, open: true, port: program.port, additionalRoutes: defineAdditionalRoutes(args) });
     } else {
         const { server }: any = await serve({ index: program.file, open: false, port: program.port, additionalRoutes: defineAdditionalRoutes(args) });
-        console.log('SERVER', server);
         serverHandle = server;
         await run(options);
         server.close();
