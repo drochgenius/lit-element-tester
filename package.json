@@ -26,8 +26,9 @@
     },
     "homepage": "https://github.com/drochgenius/lit-element-tester#readme",
     "dependencies": {
+        "@hmh/nodejs-base-server": "^1.2.6",
         "chai": "^4.2.0",
-        "commander": "^2.18.0",
+        "commander": "^2.19.0",
         "istanbul-api": "^2.0.6",
         "istanbul-lib-coverage": "^2.0.1",
         "istanbul-lib-instrument": "^2.3.2",

@@ -1,0 +1,20 @@
+{
+    "activeMode": "dev",
+    "dev": {
+        "NodeServer": {
+            "applicationFileFolder": "./dist",
+            "cacheControlStrategy": {
+                "static": "no-cache, private",
+                "api": "no-cache, private"
+            },
+            "defaultClientContentPath": "test/runner.html",
+            "port": 3000,
+            "staticContentMaxAge": 0,
+            "staticFolderMapping": {
+                "/browser": "dist/browser",
+                "/test": "dist/test",
+                "/unit": "dist/unit"
+            }
+        }
+    }
+}

@@ -5,10 +5,10 @@
     <title>Mocha Tests</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="../node_modules/mocha/mocha.css">
-    <script src="../node_modules/source-map-support/browser-source-map-support.js"></script>
-    <script src="../node_modules/mocha/mocha.js"></script>
-    <script src="../node_modules/chai/chai.js"></script>
-    <script src="../dist/browser/util.js">
+    <script src="/node_modules/source-map-support/browser-source-map-support.js"></script>
+    <script src="/node_modules/mocha/mocha.js"></script>
+    <script src="/node_modules/chai/chai.js"></script>
+    <script src="/browser/util.js">
         // for withSnippet() fixture utility
     </script>
     <script>
@@ -17,7 +17,7 @@
         mocha.setup('bdd');
     </script>
     <!-- add your components under test here -->
-    <script src="../dist/components/page-banner.js"></script>
+    <script src="/components/page-banner.js"></script>
 </head>
 
 <body>
@@ -30,7 +30,7 @@
     <div id="mocha"></div>
     <div id="stage"></div>
     <!-- add you test files here -->
-    <script src="../dist/test/index.spec.js"></script>
+    <script src="/test/index.spec.js"></script>
     <script>mocha.run();</script>
 </body>
 
