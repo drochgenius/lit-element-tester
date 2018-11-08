@@ -13,7 +13,7 @@ program
     .option('-f, --file [file]', 'html runner file path', 'test/runner.html')
     .option('-H --height [px]', 'browser window height in pixels', parseInt, 800)
     .option('-W, --width [px]', 'browser window width in pixels', parseInt, 600)
-    .option('-T, --timeout [ms]', 'test timeout in milliseconds', parseInt, 600000)
+    .option('-T, --timeout [ms]', 'test timeout in milliseconds', parseInt, 0)
     .option('-R, --reporter [name]', 'mocha reporter', 'text')
     .option('-p, --port [number]', 'server port', parseInt, 3000)
     .on('--help', function() {
