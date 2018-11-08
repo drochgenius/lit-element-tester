@@ -46,8 +46,21 @@ class Server extends Parent {
     }
 
     protected redirect(url: string): string {
-        if (this.instrumentedFiles.some(file => url.includes(file.split('/').pop()))) {
-            return url.replace(/\.js$/, '.$.js');
+        if (
+            this.instrumentedFiles.some(file =>
+                url.includes(
+                    file
+                        .split('/')
+                        .pop()
+                        .replace('.js$', '')
+                )
+            )
+        ) {
+            if (url.endsWith('.js')) {
+                return url.replace(/\.js$/, '.$.js');
+            } else {
+                return url + '.$.js';
+            }
         } else {
             return url;
         }
@@ -56,7 +69,7 @@ class Server extends Parent {
 
 const instance: Server = new Server();
 
-export async function startServer(config: string, instrumented: string[], port: string, mode: string = 'dev') {
+export async function startServer(config: string, port: string, mode: string = 'dev') {
     assert(config, 'You must provide a server configuration file, see src/server/config.json for an example.');
     assert(existsSync(config), `The configuration file does not exist: ${config}`);
 
@@ -67,6 +80,7 @@ export async function startServer(config: string, instrumented: string[], port: 
     console.log('Server configuration file:', config);
     console.log('Server mode:', mode);
     console.log('Server root directory:', process.cwd());
+    appConfig[mode].NodeServer.defaultClientContentPath = appConfig[mode].LitElementTester.testClientContentPath;
     await instance.configureAndStart(appConfig, mode, port);
 }
 

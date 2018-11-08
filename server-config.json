@@ -19,7 +19,8 @@
             }
         },
         "LitElementTester": {
-            "instrumentedFiles": ["dist/components/*.js"]
+            "instrumentedFiles": ["dist/components/*.js"],
+            "testClientContentPath": "test/runner.html"
         }
     }
 }

@@ -50,9 +50,9 @@ if (process.env.CHROME_EXECUTABLE_PATH) {
 
     // Run the tests
     if (program.development) {
-        await startServer(configFile, args, program.port);
+        await startServer(configFile, program.port);
     } else {
-        await startServer(configFile, args, program.port);
+        await startServer(configFile, program.port);
         await run(options);
         stopServer();
     }
