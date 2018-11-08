@@ -53,9 +53,9 @@ if (process.env.CHROME_EXECUTABLE_PATH) {
     // Run the tests
     const configFile: string = `${resolve(__dirname, '../..')}/server-config.json`;
     if (program.development) {
-        startServer(configFile, args, program.port);
+        await startServer(configFile, args, program.port);
     } else {
-        startServer(configFile, args, program.port);
+        await startServer(configFile, args, program.port);
         await run(options);
         stopServer();
     }

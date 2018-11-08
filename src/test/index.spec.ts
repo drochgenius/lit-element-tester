@@ -1,17 +1,22 @@
-const { expect } = chai;
+import { LitElement } from '@polymer/lit-element';
+
+const expect: Chai.ExpectStatic = chai.expect;
 
 describe('some example tests', () => {
-    it('should be true', () => {
+    it('should be true', (): void => {
         expect(true).to.be.true;
     });
 
-    it('print innerHTML', () => {
+    it('print innerHTML', async (): Promise<void> => {
         withSnippet('first');
+        const el: LitElement = document.querySelector('page-banner');
+        await el.updateComplete;
         const message = 'Hello World!';
-        const html: string = document.querySelector('page-banner').innerHTML;
-        expect(html).to.contain(message);
-        expect(html).to.contain('My banner shows this');
-        const attribute: string = document.querySelector('page-banner').getAttribute('message');
-        expect(attribute).to.equal(message);
+        expect(el.shadowRoot).not.to.be.undefined;
+        const h3: HTMLHeadingElement = el.shadowRoot.querySelector('h3');
+
+        expect(h3.innerText).to.equal(message);
     });
 });
+
+mocha.run();

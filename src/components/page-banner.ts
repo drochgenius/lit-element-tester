@@ -1,24 +1,23 @@
-class PageBanner extends HTMLElement {
-    public message: string;
+import { LitElement, html, property } from '@polymer/lit-element';
+import { TemplateResult } from 'lit-html';
 
-    static get observedAttributes() {
-        return ['message'];
-    }
+export class PageBanner extends LitElement {
+    @property({ type: String })
+    public message: string;
 
     constructor() {
         super(); // always call super() first in the constructor.
         console.log('page banner is being built');
     }
 
-    attributeChangedCallback(attrName: string, oldVal: any, newVal: any) {
-        if (attrName === 'message') {
-            const h3: HTMLHeadingElement = document.createElement('h3');
-            this.appendChild(h3);
-            h3.innerHTML = `My banner shows this: ${newVal}`;
-        }
+    render(): TemplateResult {
+        const { message } = this;
+        return html`
+            <h3>${message}</h3>
+        `;
     }
 
-    public otherFuncNotCovered(){
+    public otherFuncNotCovered() {
         this.blur();
     }
 }

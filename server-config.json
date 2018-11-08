@@ -3,6 +3,7 @@
     "dev": {
         "NodeServer": {
             "applicationFileFolder": "./dist",
+            "importMap": "./dist/import-map.json",
             "cacheControlStrategy": {
                 "static": "no-cache, private",
                 "api": "no-cache, private"

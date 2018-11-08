@@ -2,7 +2,7 @@
     "extends": "../tsconfig.json",
     "compilerOptions": {
         "target": "esnext",
-        "module": "none",
+        "module": "esnext",
         "moduleResolution": "node",
         "rootDir": ".",
         "outDir": "../../dist/test"

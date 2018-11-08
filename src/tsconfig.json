@@ -1,7 +1,7 @@
 {
     "compileOnSave": true,
     "compilerOptions": {
-        "baseUrl": "../",
+        "baseUrl": "./",
         "declaration": true,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
@@ -14,7 +14,13 @@
         "preserveConstEnums": true,
         "sourceMap": true,
         "pretty": true,
+        "target": "esnext",
+        "module": "esnext",
+        "moduleResolution": "node",
+        "rootDir": ".",
+        "outDir": "../dist",
         "lib": ["esnext", "dom"]
     },
+    "include": ["./*.ts"],
     "exclude": ["node_modules"]
 }

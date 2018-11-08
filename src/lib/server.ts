@@ -1,12 +1,16 @@
 import * as assert from 'assert';
 import { existsSync, readFileSync } from 'fs';
-import { BaseServer as Parent } from '@hmh/nodejs-base-server';
+import { BaseServer as Parent, ImportMapGenerator } from '@hmh/nodejs-base-server';
 
 class Server extends Parent {
     private instrumentedFiles: string[];
 
-    public configureAndStart(config: { [key: string]: any }, instrumented: string[], configMode?: string, port?: string): void {
+    public async configureAndStart(config: { [key: string]: any }, instrumented: string[], configMode?: string, port?: string): Promise<void> {
         this.instrumentedFiles = instrumented;
+        // Generate import map
+        const generator: ImportMapGenerator = new ImportMapGenerator(config[configMode]);
+        await generator.process();
+        // start server
         this.start({}, this.updateConfig(config, port, this.getServerDirectory()));
     }
 
@@ -46,11 +50,9 @@ class Server extends Parent {
 
 const instance: Server = new Server();
 
-export function startServer(config: string, instrumented: string[], port: string, mode: string = 'dev') {
-    console.log('CAlling server', 1);
+export async function startServer(config: string, instrumented: string[], port: string, mode: string = 'dev') {
     assert(config, 'You must provide a server configuration file, see src/server/config.json for an example.');
     assert(existsSync(config), `The configuration file does not exist: ${config}`);
-    console.log('CAlling server', 2);
 
     const content: string = readFileSync(config, 'utf8');
     const appConfig: any = JSON.parse(content);
@@ -60,7 +62,7 @@ export function startServer(config: string, instrumented: string[], port: string
     console.log('Server mode:', mode);
     console.log('Server root directory:', process.cwd());
     console.log('instrumented', instrumented);
-    instance.configureAndStart(appConfig, instrumented, mode, port);
+    await instance.configureAndStart(appConfig, instrumented, mode, port);
 }
 
 export function stopServer() {
