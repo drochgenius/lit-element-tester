@@ -1,12 +1,18 @@
 import * as assert from 'assert';
 import { existsSync, readFileSync } from 'fs';
+import { sync } from 'globby';
 import { BaseServer as Parent, ImportMapGenerator } from '@hmh/nodejs-base-server';
+import { instrument } from './index';
 
 class Server extends Parent {
     private instrumentedFiles: string[];
 
-    public async configureAndStart(config: { [key: string]: any }, instrumented: string[], configMode?: string, port?: string): Promise<void> {
-        this.instrumentedFiles = instrumented;
+    public async configureAndStart(config: { [key: string]: any }, configMode?: string, port?: string): Promise<void> {
+        this.instrumentedFiles = sync(config[configMode].LitElementTester.instrumentedFiles);
+        if (this.instrumentedFiles) {
+            await instrument(this.instrumentedFiles);
+            console.log('instrumented', this.instrumentedFiles);
+        }
         // Generate import map
         const generator: ImportMapGenerator = new ImportMapGenerator(config[configMode]);
         await generator.process();
@@ -61,8 +67,7 @@ export async function startServer(config: string, instrumented: string[], port: 
     console.log('Server configuration file:', config);
     console.log('Server mode:', mode);
     console.log('Server root directory:', process.cwd());
-    console.log('instrumented', instrumented);
-    await instance.configureAndStart(appConfig, instrumented, mode, port);
+    await instance.configureAndStart(appConfig, mode, port);
 }
 
 export function stopServer() {

@@ -14,8 +14,12 @@
             "staticFolderMapping": {
                 "/browser": "dist/browser",
                 "/test": "dist/test",
-                "/unit": "dist/unit"
+                "/unit": "dist/unit",
+                "/mixins": "dist/mixins"
             }
+        },
+        "LitElementTester": {
+            "instrumentedFiles": ["dist/components/*.js"]
         }
     }
 }

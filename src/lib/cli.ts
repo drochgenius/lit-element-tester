@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 import { Options } from 'mocha-headless-chrome';
-import { resolve } from 'path';
+
 import * as program from 'commander';
-import { instrument, run } from './index';
+import { run } from './index';
 import { startServer, stopServer } from './server';
 
 program
@@ -45,13 +45,10 @@ if (process.env.CHROME_EXECUTABLE_PATH) {
 }
 
 (async (): Promise<void> => {
-    // Generate instrumented files for coverage
-    if (args) {
-        await instrument(args);
-    }
+    const configFile: string = args[0];
+    console.log('CONFIG FILE', configFile);
 
     // Run the tests
-    const configFile: string = `${resolve(__dirname, '../..')}/server-config.json`;
     if (program.development) {
         await startServer(configFile, args, program.port);
     } else {
