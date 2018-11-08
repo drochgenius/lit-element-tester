@@ -13,9 +13,7 @@
             "staticContentMaxAge": 0,
             "staticFolderMapping": {
                 "/browser": "dist/browser",
-                "/test": "dist/test",
-                "/unit": "dist/unit",
-                "/mixins": "dist/mixins"
+                "/test": "dist/test"
             }
         },
         "LitElementTester": {

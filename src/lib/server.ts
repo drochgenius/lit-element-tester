@@ -52,7 +52,7 @@ class Server extends Parent {
                     file
                         .split('/')
                         .pop()
-                        .replace('.js$', '')
+                        .replace(/\.js$/, '')
                 )
             )
         ) {
