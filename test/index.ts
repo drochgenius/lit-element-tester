@@ -1,2 +1,2 @@
-export * from './components/page-banner';
-export * from './browser/util';
+export * from './components/page-banner.js';
+export * from './browser/util.js';
