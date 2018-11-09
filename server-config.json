@@ -13,11 +13,12 @@
             "staticContentMaxAge": 0,
             "staticFolderMapping": {
                 "/browser": "dist/browser",
-                "/test": "dist/test"
+                "/unit": "dist/unit",
+                "/mixins": "dist/mixins"
             }
         },
         "LitElementTester": {
-            "instrumentedFiles": ["dist/components/*.js"],
+            "instrumentedFiles": ["dist/components/*.js", "dist/mixins/*.js"],
             "testClientContentPath": "test/runner.html"
         }
     }

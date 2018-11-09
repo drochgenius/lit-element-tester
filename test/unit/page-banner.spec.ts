@@ -1,4 +1,5 @@
 import { LitElement } from '@polymer/lit-element';
+import { withSnippet } from '../browser/util.js';
 
 const expect: Chai.ExpectStatic = chai.expect;
 

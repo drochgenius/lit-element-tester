@@ -9,8 +9,8 @@
     "scripts": {
         "clean": "rm -rf node_modules/ package-lock.json dist/",
         "prepare": "npm run build",
-        "build": "tsc -p src/lib; tsc -p src/components; tsc -p src/browser; tsc -p src/test; tsc -p src",
-        "watch": "tsc -p src/lib -w ",
+        "build": "tsc -p src ; tsc -p test",
+        "watch": "concurrently --names 'build,tests' -c 'bgBlue,bgYellow' 'tsc -p src -w' 'tsc -p test -w'",
         "help": "dist/lib/cli.js -h",
         "test": "dist/lib/cli.js server-config.json",
         "test-dev": "dist/lib/cli.js  -f test/runner.html -d"
@@ -47,6 +47,7 @@
     "devDependencies": {
         "@polymer/lit-element": "^0.6.2",
         "@types/prettier": "^1.13.2",
+        "concurrently": "^4.0.1",
         "typescript": "latest"
     }
 }

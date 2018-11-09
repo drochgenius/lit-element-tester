@@ -46,6 +46,7 @@ class Server extends Parent {
     }
 
     protected redirect(url: string): string {
+        console.log("REDIRECT", url);
         if (
             this.instrumentedFiles.some(file =>
                 url.includes(

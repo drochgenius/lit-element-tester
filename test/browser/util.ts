@@ -1,4 +1,4 @@
-function withSnippet(id: string, target: string = 'stage'): void {
+export function withSnippet(id: string, target: string = 'stage'): void {
     const template: HTMLTemplateElement = document.getElementById(id) as HTMLTemplateElement;
     const stage: HTMLElement = document.getElementById(target);
 
