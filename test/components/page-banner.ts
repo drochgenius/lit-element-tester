@@ -1,7 +1,7 @@
 import { LitElement, html, property } from '@polymer/lit-element';
 import { TemplateResult } from 'lit-html';
-import { Feedback, FeedbackType } from '../mixins/feedback.js';
-import { applyMixins } from '../mixins/mixin-utils.js';
+import { Feedback, FeedbackType } from '../mixins/feedback';
+import { applyMixins } from '../mixins/mixin-utils';
 
 export class PageBanner extends LitElement implements Feedback {
     @property({ type: String })

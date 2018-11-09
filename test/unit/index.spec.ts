@@ -1,4 +1,4 @@
-import pageBannerSpec from './page-banner.spec.js';
+import pageBannerSpec from './page-banner.spec';
 
 pageBannerSpec();
 

@@ -5,7 +5,7 @@ export enum FeedbackType {
 }
 
 export class Feedback {
-   public  getFeedback(value: number): FeedbackType {
+    public getFeedback(value: number): FeedbackType {
         if (value > 0) {
             return FeedbackType.positive;
         } else if (value === 0) {

@@ -4,6 +4,13 @@ import { sync } from 'globby';
 import { BaseServer as Parent, ImportMapGenerator } from '@hmh/nodejs-base-server';
 import { instrument } from './index';
 
+function tokenize(url: string): string {
+    return url
+        .split('/')
+        .pop()
+        .replace(/\.js$/, '');
+}
+
 class Server extends Parent {
     private instrumentedFiles: string[];
 
@@ -46,25 +53,16 @@ class Server extends Parent {
     }
 
     protected redirect(url: string): string {
-        console.log("REDIRECT", url);
-        if (
-            this.instrumentedFiles.some(file =>
-                url.includes(
-                    file
-                        .split('/')
-                        .pop()
-                        .replace(/\.js$/, '')
-                )
-            )
-        ) {
+        if (this.instrumentedFiles.some(file => tokenize(url) === tokenize(file))) {
             if (url.endsWith('.js')) {
+                console.log('REDIRECT WITH JS', url);
                 return url.replace(/\.js$/, '.$.js');
             } else {
+                console.log('REDIRECT WITHOUT JS', url);
                 return url + '.$.js';
             }
-        } else {
-            return url;
         }
+        return url;
     }
 }
 
