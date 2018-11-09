@@ -6,6 +6,7 @@
         "lit-element-tester": "dist/lib/cli.js"
     },
     "main": "dist/lib/index.js",
+    "module": "dist/lib/index.js",
     "scripts": {
         "clean": "rm -rf node_modules/ package-lock.json dist/",
         "prepare": "npm run build",
