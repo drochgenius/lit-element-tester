@@ -4,14 +4,6 @@ import { existsSync, readFileSync } from 'fs';
 import { sync } from 'globby';
 import { BaseServer as Parent, ImportMapGenerator } from '@hmh/nodejs-base-server';
 import { instrument } from './index';
-import { fileURLToPath } from 'url';
-
-function tokenize(url: string): string {
-    return url
-        .split('/')
-        .pop()
-        .replace(/\.js$/, '');
-}
 
 class Server extends Parent {
     private instrumentedFiles: string[];
@@ -78,6 +70,7 @@ export async function startServer(config: string, port: string, mode: string = '
     console.log('Server mode:', mode);
     console.log('Server root directory:', process.cwd());
     appConfig[mode].NodeServer.defaultClientContentPath = appConfig[mode].LitElementTester.testClientContentPath;
+    appConfig[mode].NodeServer.disableLogging = appConfig[mode].LitElementTester.disableLogging ? true : false;
     await instance.configureAndStart(appConfig, mode, port);
 }
 

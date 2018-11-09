@@ -18,7 +18,8 @@
         },
         "LitElementTester": {
             "instrumentedFiles": ["dist/components/*.js", "dist/mixins/*.js"],
-            "testClientContentPath": "test/runner.html"
+            "testClientContentPath": "test/runner.html",
+            "disableLogging": true
         }
     }
 }
