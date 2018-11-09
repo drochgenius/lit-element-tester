@@ -53,7 +53,7 @@ class Server extends Parent {
     }
 
     protected redirect(url: string): string {
-        if (this.instrumentedFiles.some(file => tokenize(url) === tokenize(file))) {
+        if (!url.includes('node_modules') && this.instrumentedFiles.some(file => tokenize(url) === tokenize(file))) {
             if (url.endsWith('.js')) {
                 console.log('REDIRECT WITH JS', url);
                 return url.replace(/\.js$/, '.$.js');
