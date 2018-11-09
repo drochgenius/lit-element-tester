@@ -1,8 +1,10 @@
 import * as assert from 'assert';
+import { extname } from 'path';
 import { existsSync, readFileSync } from 'fs';
 import { sync } from 'globby';
 import { BaseServer as Parent, ImportMapGenerator } from '@hmh/nodejs-base-server';
 import { instrument } from './index';
+import { fileURLToPath } from 'url';
 
 function tokenize(url: string): string {
     return url
@@ -53,16 +55,12 @@ class Server extends Parent {
     }
 
     protected redirect(url: string): string {
-        if (!url.includes('node_modules') && this.instrumentedFiles.some(file => tokenize(url) === tokenize(file))) {
-            if (url.endsWith('.js')) {
-                console.log('REDIRECT WITH JS', url);
-                return url.replace(/\.js$/, '.$.js');
-            } else {
-                console.log('REDIRECT WITHOUT JS', url);
-                return url + '.$.js';
-            }
+        const path: string = ['.spec', ''].includes(extname(url)) ? url + '.js' : url;
+
+        if (!url.includes('node_modules') && this.instrumentedFiles.some(file => file.endsWith(path))) {
+            return path.replace(/\.js$/, '.$.js');
         }
-        return url;
+        return path;
     }
 }
 
