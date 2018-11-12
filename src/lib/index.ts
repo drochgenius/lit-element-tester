@@ -15,13 +15,15 @@ export async function instrument(files: string[] = []) {
     const instrumenter: any = createInstrumenter({ esModules: true, produceSourceMap: true });
 
     for (const sourceFile of files) {
-        if (!sourceFile.includes('$')) {
+        if (!sourceFile.endsWith('.$.js')) {
             const instrumentedFile = sourceFile.replace('.js', '.$.js');
 
             const code: string = readFileSync(sourceFile, 'utf8');
 
             const instrumentedCode: string = instrumenter.instrumentSync(code, sourceFile);
             writeFileSync(instrumentedFile, format(instrumentedCode, { singleQuote: true, parser: 'babylon', tabWidth: 4 }), 'utf8');
+            console.log('intrumenting:', sourceFile);
+
         }
     }
 }

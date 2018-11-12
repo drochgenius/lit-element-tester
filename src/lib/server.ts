@@ -12,7 +12,6 @@ class Server extends Parent {
         this.instrumentedFiles = sync(config[configMode].LitElementTester.instrumentedFiles);
         if (this.instrumentedFiles) {
             await instrument(this.instrumentedFiles);
-            console.log('instrumented', this.instrumentedFiles);
         }
         // Generate import map
         const generator: ImportMapGenerator = new ImportMapGenerator(config[configMode]);
