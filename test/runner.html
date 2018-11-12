@@ -1,33 +1,31 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <title>Sample Test Runner</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="../node_modules/mocha/mocha.css" />
+        <script src="/node_modules/source-map-support/browser-source-map-support.js"></script>
+        <script src="/node_modules/mocha/mocha.js"></script>
+        <script src="/node_modules/chai/chai.js"></script>
+        <script>
+            /* global mocha, sourceMapSupport */
+            sourceMapSupport.install();
+            mocha.setup('bdd');
+        </script>
 
-<head>
-    <title>Mocha Tests</title>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="../node_modules/mocha/mocha.css">
-    <script src="/node_modules/source-map-support/browser-source-map-support.js"></script>
-    <script src="/node_modules/mocha/mocha.js"></script>
-    <script src="/node_modules/chai/chai.js"></script>
-    <script>
-        /* global mocha, sourceMapSupport */
-        sourceMapSupport.install();
-        mocha.setup('bdd');
-    </script>
-    <!-- add your components under test here -->
-    <script type="module" src="/components/page-banner.js"></script>
-</head>
+        <!-- add your components under test here -->
+        <script type="module" src="/components/page-banner.js"></script>
+        <!-- add you test files here -->
+        <script type="module" src="/unit/index.spec.js"></script>
+    </head>
 
-<body>
+    <body>
+        <!-- add your test fixtures here -->
+        <template id="first">
+            <page-banner message="Hello World!"></page-banner>
+        </template>
 
-    <!-- test snippets -->
-    <template id="first">
-        <page-banner message="Hello World!"></page-banner>
-    </template>
-
-    <div id="mocha"></div>
-    <div id="stage"></div>
-    <!-- add you test files here -->
-    <script type="module" src="/unit/index.spec.js"></script>
-</body>
-
+        <div id="mocha"></div>
+        <div id="stage"></div>
+    </body>
 </html>

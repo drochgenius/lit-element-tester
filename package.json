@@ -12,7 +12,7 @@
         "prepare": "npm run build",
         "build": "tsc -p src ; tsc -p test",
         "watch": "concurrently --names 'build,tests' -c 'bgBlue,bgYellow' 'tsc -p src -w' 'tsc -p test -w'",
-        "help": "dist/lib/cli.js -h",
+        "help": "node dist/lib/cli.js -h",
         "test": "node dist/lib/cli.js server-config.json",
         "test-dev": "dist/lib/cli.js  -f test/runner.html -d"
     },
