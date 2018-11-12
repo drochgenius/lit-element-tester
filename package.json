@@ -30,15 +30,14 @@
     "dependencies": {
         "@hmh/nodejs-base-server": "latest",
         "@types/chai": "latest",
-        "@types/globby": "^8.0.0",
+        "@types/globby": "latest",
         "@types/mocha": "latest",
-        "D": "^1.0.0",
         "chai": "latest",
         "commander": "latest",
-        "globby": "^8.0.1",
-        "istanbul-api": "^2.0.6",
-        "istanbul-lib-coverage": "^2.0.1",
-        "istanbul-lib-instrument": "^3.0.0",
+        "globby": "latest",
+        "istanbul-api": "latest",
+        "istanbul-lib-coverage": "latest",
+        "istanbul-lib-instrument": "latest",
         "mocha": "latest",
         "mocha-headless-chrome": "latest",
         "prettier": "latest",
@@ -47,8 +46,8 @@
     },
     "devDependencies": {
         "@polymer/lit-element": "^0.6.2",
-        "@types/prettier": "^1.13.2",
-        "concurrently": "^4.0.1",
+        "@types/prettier": "latest",
+        "concurrently": "latest",
         "typescript": "latest"
     }
 }
