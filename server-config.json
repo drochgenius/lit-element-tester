@@ -1,0 +1,25 @@
+{
+    "activeMode": "dev",
+    "dev": {
+        "NodeServer": {
+            "applicationFileFolder": "./dist",
+            "importMap": "./dist/import-map.json",
+            "cacheControlStrategy": {
+                "static": "no-cache, private",
+                "api": "no-cache, private"
+            },
+            "defaultClientContentPath": "test/runner.html",
+            "port": 3000,
+            "staticContentMaxAge": 0,
+            "staticFolderMapping": {
+                "/browser": "dist/browser",
+                "/unit": "dist/unit"
+            }
+        },
+        "LitElementTester": {
+            "instrumentedFiles": ["dist/components/*.js", "dist/mixins/*.js"],
+            "testClientContentPath": "test/runner.html",
+            "disableLogging": true
+        }
+    }
+}

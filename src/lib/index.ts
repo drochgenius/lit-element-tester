@@ -4,6 +4,7 @@ import { createReporter } from 'istanbul-api';
 import { createCoverageMap } from 'istanbul-lib-coverage';
 import { createInstrumenter } from 'istanbul-lib-instrument';
 import { readFileSync, writeFileSync, unlinkSync } from 'fs';
+import { format } from 'prettier';
 
 /**
  * Instrument Javascript files for code coverage reporting
@@ -14,13 +15,15 @@ export async function instrument(files: string[] = []) {
     const instrumenter: any = createInstrumenter({ esModules: true, produceSourceMap: true });
 
     for (const sourceFile of files) {
-        if (!sourceFile.includes('$')) {
+        if (!sourceFile.endsWith('.$.js')) {
             const instrumentedFile = sourceFile.replace('.js', '.$.js');
 
             const code: string = readFileSync(sourceFile, 'utf8');
 
             const instrumentedCode: string = instrumenter.instrumentSync(code, sourceFile);
-            writeFileSync(instrumentedFile, instrumentedCode, 'utf8');
+            writeFileSync(instrumentedFile, format(instrumentedCode, { singleQuote: true, parser: 'babylon', tabWidth: 4 }), 'utf8');
+            console.log('intrumenting:', sourceFile);
+
         }
     }
 }
@@ -44,7 +47,7 @@ export async function run(options: Options): Promise<void> {
         console.warn('NOTICE: code coverage could not be computed');
     }
 
-    if (result.stats.failures > 0){
+    if (result.stats.failures > 0) {
         throw new Error('Some of the tests failed, see above report for details!');
     }
 }

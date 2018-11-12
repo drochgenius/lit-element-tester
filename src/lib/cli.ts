@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 import { Options } from 'mocha-headless-chrome';
+
 import * as program from 'commander';
-import { instrument, run } from './index';
-import { serve, defineAdditionalRoutes } from './server';
+import { run } from './index';
+import { startServer, stopServer } from './server';
 
 program
     .version('0.0.1')
@@ -36,34 +37,28 @@ const options: Options = {
     width: program.width, // viewport width
     height: program.height, // viewport height
     args: ['no-sandbox'], // chrome arguments
-    timeout: program.timeout, // timeout in ms
+    timeout: program.timeout // timeout in ms
 };
 
 if (process.env.CHROME_EXECUTABLE_PATH) {
     options.executablePath = process.env.CHROME_EXECUTABLE_PATH;
 }
 
-let serverHandle: any;
-
 (async (): Promise<void> => {
-    // Generate instrumented files for coverage
-    if (args) {
-        await instrument(args);
-    }
+    const configFile: string = args[0];
+    console.log('CONFIG FILE', configFile);
 
     // Run the tests
     if (program.development) {
-        await serve({ index: program.file, open: true, port: program.port, additionalRoutes: defineAdditionalRoutes(args) });
+        await startServer(configFile, program.port);
     } else {
-        const { server }: any = await serve({ index: program.file, open: false, port: program.port, additionalRoutes: defineAdditionalRoutes(args) });
-        serverHandle = server;
+        await startServer(configFile, program.port);
         await run(options);
-        server.close();
+        stopServer();
     }
 })().catch((err: Error) => {
-    if (serverHandle) {
-        serverHandle.close();
-    }
     console.error('Failed to run tests with options: ', JSON.stringify(options));
+    console.error(err);
+    stopServer();
     process.exit(1);
 });
