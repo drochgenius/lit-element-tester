@@ -1,6 +1,6 @@
 {
     "name": "@hmh/lit-element-tester",
-    "version": "1.0.1",
+    "version": "1.1.1",
     "description": "Framework to unit test custom elements on Chrome",
     "bin": {
         "lit-element-tester": "dist/lib/cli.js"
@@ -45,7 +45,7 @@
         "source-map-support": "latest"
     },
     "devDependencies": {
-        "@polymer/lit-element": "^0.6.2",
+        "@polymer/lit-element": "^0.6.3",
         "@types/prettier": "latest",
         "concurrently": "latest",
         "typescript": "latest"

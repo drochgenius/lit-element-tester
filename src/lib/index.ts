@@ -3,27 +3,33 @@ import { loadCoverage, remap, writeReport } from 'remap-istanbul';
 import { createReporter } from 'istanbul-api';
 import { createCoverageMap } from 'istanbul-lib-coverage';
 import { createInstrumenter } from 'istanbul-lib-instrument';
-import { readFileSync, writeFileSync, unlinkSync } from 'fs';
+import { readFileSync, writeFileSync, unlinkSync, watch } from 'fs';
 import { format } from 'prettier';
+
+const instrumenter: any = createInstrumenter({ esModules: true, produceSourceMap: true });
+
+function instrumentFile(sourceFile: string) {
+    const instrumentedFile = sourceFile.replace('.js', '.$.js');
+
+    const code: string = readFileSync(sourceFile, 'utf8');
+
+    const instrumentedCode: string = instrumenter.instrumentSync(code, sourceFile);
+    writeFileSync(instrumentedFile, format(instrumentedCode, { singleQuote: true, parser: 'babylon', tabWidth: 4 }), 'utf8');
+    console.log('intrumenting:', sourceFile);
+}
 
 /**
  * Instrument Javascript files for code coverage reporting
  *
  * @param files : a list of javascript files to instrument with Istanbul
  */
-export async function instrument(files: string[] = []) {
-    const instrumenter: any = createInstrumenter({ esModules: true, produceSourceMap: true });
-
+export function instrument(files: string[] = [], persistent: boolean = false) {
     for (const sourceFile of files) {
         if (!sourceFile.endsWith('.$.js')) {
-            const instrumentedFile = sourceFile.replace('.js', '.$.js');
-
-            const code: string = readFileSync(sourceFile, 'utf8');
-
-            const instrumentedCode: string = instrumenter.instrumentSync(code, sourceFile);
-            writeFileSync(instrumentedFile, format(instrumentedCode, { singleQuote: true, parser: 'babylon', tabWidth: 4 }), 'utf8');
-            console.log('intrumenting:', sourceFile);
-
+            instrumentFile(sourceFile);
+            if (persistent) {
+                watch(sourceFile, () => instrumentFile(sourceFile));
+            }
         }
     }
 }
