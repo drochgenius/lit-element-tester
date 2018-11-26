@@ -23,11 +23,13 @@ function instrumentFile(sourceFile: string) {
  *
  * @param files : a list of javascript files to instrument with Istanbul
  */
-export function instrument(files: string[] = []) {
+export function instrument(files: string[] = [], persistent: boolean = false) {
     for (const sourceFile of files) {
         if (!sourceFile.endsWith('.$.js')) {
             instrumentFile(sourceFile);
-            watch(sourceFile, () => instrumentFile(sourceFile));
+            if (persistent) {
+                watch(sourceFile, () => instrumentFile(sourceFile));
+            }
         }
     }
 }

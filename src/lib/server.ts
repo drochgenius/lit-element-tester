@@ -8,10 +8,10 @@ import { instrument } from './index';
 class Server extends Parent {
     private instrumentedFiles: string[];
 
-    public async configureAndStart(config: { [key: string]: any }, configMode?: string, port?: string): Promise<void> {
+    public async configureAndStart(config: { [key: string]: any }, configMode?: string, port?: string, persistent: boolean = false): Promise<void> {
         this.instrumentedFiles = sync(config[configMode].LitElementTester.instrumentedFiles);
         if (this.instrumentedFiles) {
-            await instrument(this.instrumentedFiles);
+            instrument(this.instrumentedFiles, persistent);
         }
         // Generate import map
         const generator: ImportMapGenerator = new ImportMapGenerator(config[configMode]);
@@ -57,7 +57,7 @@ class Server extends Parent {
 
 const instance: Server = new Server();
 
-export async function startServer(config: string, port: string, mode: string = 'dev') {
+export async function startServer(config: string, persistent: boolean, port: string, mode: string = 'dev') {
     assert(config, 'You must provide a server configuration file, see src/server/config.json for an example.');
     assert(existsSync(config), `The configuration file does not exist: ${config}`);
 
@@ -70,7 +70,7 @@ export async function startServer(config: string, port: string, mode: string = '
     console.log('Server root directory:', process.cwd());
     appConfig[mode].NodeServer.defaultClientContentPath = appConfig[mode].LitElementTester.testClientContentPath;
     appConfig[mode].NodeServer.disableLogging = appConfig[mode].LitElementTester.disableLogging ? true : false;
-    await instance.configureAndStart(appConfig, mode, port);
+    await instance.configureAndStart(appConfig, mode, port, persistent);
 }
 
 export function stopServer() {
