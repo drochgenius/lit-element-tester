@@ -17,10 +17,11 @@
         "target": "esnext",
         "module": "commonjs",
         "moduleResolution": "node",
+        "resolveJsonModule": true,
         "rootDir": ".",
         "outDir": "../dist",
         "lib": ["esnext", "dom"]
     },
-    "include": ["./**/*.ts"],
+    "include": ["./**/*.ts", "./typings.d.ts"],
     "exclude": ["node_modules"]
 }

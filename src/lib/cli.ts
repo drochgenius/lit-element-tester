@@ -4,10 +4,11 @@ import { Options } from 'mocha-headless-chrome';
 import * as program from 'commander';
 import { run } from './index';
 import { startServer, stopServer } from './server';
+import * as pkg from '../../package.json';
 
 program
-    .version('0.0.1')
-    .description('Run unit tests for custom elements in Google Chrome')
+    .version(pkg.version)
+    .description(`Lit Element Tester v${pkg.version}`)
     .usage('<files...> [options]')
     .option('-d, --development', 'launch a real browser for test development')
     .option('-f, --file [file]', 'html runner file path', 'test/runner.html')
@@ -18,11 +19,15 @@ program
     .option('-p, --port [number]', 'server port', parseInt, 3000)
     .on('--help', function() {
         console.log(`
+  Run unit tests for custom elements in the Chrome browser.
+  It uses the @hmh/nodejs-base-server to serve your application,
+  so you must provide a valid server configuration file (server-config.json)
+
   Examples:
     
   (1) Run the test and collect coverage for all javascript files in dist/ folder.
 
-    $ lit-element-tester dist/*.js -f test/index.html
+    $ lit-element-tester server-config.json -f test/index.html
         `);
     })
     .parse(process.argv);
