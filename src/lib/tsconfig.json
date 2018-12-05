@@ -6,9 +6,7 @@
         "moduleResolution": "node",
         "rootDir": "../lib",
         "outDir": "../../dist/lib",
-        "typeRoots": [
-            "."
-        ]
+        "typeRoots": ["."]
     },
-    "include": ["../lib/**/*.ts"]
+    "include": ["../lib/**/*.ts", "../typings.d.ts"]
 }

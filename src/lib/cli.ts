@@ -6,9 +6,11 @@ import { run } from './index';
 import { startServer, stopServer } from './server';
 import * as pkg from '../../package.json';
 
+const version: string = (pkg as any).version;
+
 program
-    .version(pkg.version)
-    .description(`Lit Element Tester v${pkg.version}`)
+    .version(version)
+    .description(`Lit Element Tester v${version}`)
     .usage('<files...> [options]')
     .option('-d, --development', 'launch a real browser for test development')
     .option('-f, --file [file]', 'html runner file path', 'test/runner.html')
