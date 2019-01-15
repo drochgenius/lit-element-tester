@@ -27,6 +27,13 @@
         "url": "https://github.com/drochgenius/lit-element-tester/issues"
     },
     "homepage": "https://github.com/drochgenius/lit-element-tester#readme",
+    "files": [
+        "src",
+        "README.md",
+        "package.json",
+        "LICENSE",
+        "server-config.json"
+    ], 
     "dependencies": {
         "@hmh/nodejs-base-server": "latest",
         "@types/chai": "latest",
