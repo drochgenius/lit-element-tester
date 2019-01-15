@@ -1,4 +1,4 @@
-import { LitElement, html, property } from '@polymer/lit-element';
+import { LitElement, html, property } from 'lit-element';
 import { TemplateResult } from 'lit-html';
 import { Feedback, FeedbackType } from '../mixins/feedback';
 import { applyMixins } from '../mixins/mixin-utils';
