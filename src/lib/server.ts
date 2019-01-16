@@ -2,7 +2,8 @@ import * as assert from 'assert';
 import { extname } from 'path';
 import { existsSync, readFileSync } from 'fs';
 import { sync } from 'globby';
-import { BaseServer as Parent, ImportMapGenerator } from '@hmh/nodejs-base-server';
+import { BaseServer as Parent } from '@hmh/nodejs-base-server';
+import { ImportMapGenerator} from '@hmh/nodejs-base-server/dist/server/ImportMapGenerator';
 import { instrument } from './index';
 
 class Server extends Parent {
