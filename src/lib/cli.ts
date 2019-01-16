@@ -1,12 +1,14 @@
 #!/usr/bin/env node
 import { Options } from 'mocha-headless-chrome';
 
+import { readFileSync } from 'fs';
+import { join } from 'path';
 import * as program from 'commander';
 import { run } from './index';
 import { startServer, stopServer } from './server';
-import * as pkg from '../../package.json';
 
-const version: string = (pkg as any).version;
+const json: string = readFileSync(join(__dirname, '../../package.json'), 'utf8');
+const { version }: any = JSON.parse(json);
 
 program
     .version(version)
