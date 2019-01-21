@@ -38,7 +38,6 @@ program
 
 const args: string[] = program.args;
 
-console.log('KEYS', Object.keys(program), program.port);
 console.log('file', program.file, `http://127.0.0.1:${program.port}/`);
 
 const options: Options = {
