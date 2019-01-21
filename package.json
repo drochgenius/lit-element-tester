@@ -38,6 +38,7 @@
         "istanbul-api": "latest",
         "istanbul-lib-coverage": "latest",
         "istanbul-lib-instrument": "latest",
+        "lit-element": "^2.0.0-rc.2",
         "mocha": "latest",
         "mocha-headless-chrome": "latest",
         "prettier": "latest",
@@ -47,7 +48,6 @@
     "devDependencies": {
         "@types/prettier": "latest",
         "concurrently": "latest",
-        "lit-element": "^2.0.0-rc.2",
         "typescript": "latest"
     }
 }
