@@ -1,6 +1,6 @@
 {
     "name": "@hmh/lit-element-tester",
-    "version": "1.2.6",
+    "version": "1.2.7",
     "description": "Framework to unit test custom elements on Chrome",
     "bin": {
         "lit-element-tester": "dist/lib/cli.js"
