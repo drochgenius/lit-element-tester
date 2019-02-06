@@ -1,6 +1,6 @@
 {
     "name": "@hmh/lit-element-tester",
-    "version": "1.1.7",
+    "version": "1.2.7",
     "description": "Framework to unit test custom elements on Chrome",
     "bin": {
         "lit-element-tester": "dist/lib/cli.js"
@@ -38,6 +38,7 @@
         "istanbul-api": "latest",
         "istanbul-lib-coverage": "latest",
         "istanbul-lib-instrument": "latest",
+        "lit-element": "latest",
         "mocha": "latest",
         "mocha-headless-chrome": "latest",
         "prettier": "latest",
@@ -45,7 +46,6 @@
         "source-map-support": "latest"
     },
     "devDependencies": {
-        "@polymer/lit-element": "^0.6.4",
         "@types/prettier": "latest",
         "concurrently": "latest",
         "typescript": "latest"
