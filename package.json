@@ -1,6 +1,6 @@
 {
     "name": "@hmh/lit-element-tester",
-    "version": "1.2.8",
+    "version": "1.2.9",
     "description": "Framework to unit test custom elements on Chrome",
     "bin": {
         "lit-element-tester": "dist/lib/cli.js"
@@ -14,7 +14,7 @@
         "watch": "concurrently --names 'build,tests' -c 'bgBlue,bgYellow' 'tsc -p src -w' 'tsc -p test -w'",
         "help": "node dist/lib/cli.js -h",
         "test": "node dist/lib/cli.js server-config.json",
-        "test-dev": "dist/lib/cli.js  -f test/runner.html -d"
+        "test-dev": "node dist/lib/cli.js server-config.json -f test/runner.html -d"
     },
     "repository": {
         "type": "git",
