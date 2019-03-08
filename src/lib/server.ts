@@ -3,7 +3,7 @@ import { extname } from 'path';
 import { existsSync, readFileSync } from 'fs';
 import { sync } from 'globby';
 import { BaseServer as Parent } from '@hmh/nodejs-base-server';
-import { ImportMapGenerator} from '@hmh/nodejs-base-server/dist/server/ImportMapGenerator';
+import { ImportMapGenerator} from '@hmh/nodejs-base-server/dist/server/util/ImportMapGenerator';
 import { instrument } from './index';
 
 class Server extends Parent {
