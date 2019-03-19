@@ -22,6 +22,6 @@
         "outDir": "../dist",
         "lib": ["esnext", "dom"]
     },
-    "include": ["./**/*.ts", "./typings.d.ts"],
+    "include": ["../src/**/*.ts", "./typings.d.ts"],
     "exclude": ["node_modules"]
 }

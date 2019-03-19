@@ -21,6 +21,6 @@
         "outDir": "../dist",
         "lib": ["esnext", "dom"]
     },
-    "include": ["./**/*.ts"],
+    "include": ["../test/**/*.ts"],
     "exclude": ["node_modules"]
 }
