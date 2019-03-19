@@ -3,14 +3,14 @@ import { extname } from 'path';
 import { existsSync, readFileSync } from 'fs';
 import { sync } from 'globby';
 import { BaseServer as Parent } from '@hmh/nodejs-base-server';
-import { ImportMapGenerator} from '@hmh/nodejs-base-server/dist/server/util/ImportMapGenerator';
+import { ImportMapGenerator } from '@hmh/nodejs-base-server/dist/server/util/ImportMapGenerator';
 import { instrument } from './index';
 
 class Server extends Parent {
     private instrumentedFiles: string[];
 
     public async configureAndStart(config: { [key: string]: any }, configMode?: string, port?: string, persistent: boolean = false): Promise<void> {
-        this.instrumentedFiles = sync(config[configMode].LitElementTester.instrumentedFiles);
+        this.instrumentedFiles = process.env.RUNTIME_MODE === 'debug' ? [] : sync(config[configMode].LitElementTester.instrumentedFiles);
         if (this.instrumentedFiles) {
             instrument(this.instrumentedFiles, persistent);
         }
