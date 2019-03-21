@@ -59,6 +59,7 @@ if (process.env.CHROME_EXECUTABLE_PATH) {
 
     // Run the tests
     if (program.development) {
+        process.env.RUNTIME_MODE = 'debug';
         await startServer(configFile, true, program.port);
     } else {
         await startServer(configFile, false, program.port);
